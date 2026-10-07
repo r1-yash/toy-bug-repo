@@ -1,6 +1,10 @@
-def validate_username(username: str) -> bool:
-    """Validate that username is non-empty alphanumeric string between 3 and 20 chars."""
-    # BUG: Missing None guard before checking len(username)
+def validate_username(username):
+    if username is None:
+        raise ValueError("Username cannot be None")
+    if not isinstance(username, str):
+        raise TypeError("Username must be a string")
     if len(username) < 3 or len(username) > 20:
         return False
-    return username.isalnum()
+    if not username.isalnum():
+        return False
+    return True
